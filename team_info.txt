@@ -1,0 +1,3 @@
+COQ,COQ Gaulois,http://kfpl.kr/wp-content/uploads/2020/10/coq-128x128.png
+BRO,BROS,http://kfpl.kr/wp-content/uploads/2019/09/bors-128x128.png
+DGS,Dokdo Gunners,http://kfpl.kr/wp-content/uploads/2019/09/dgs-128x128.png
