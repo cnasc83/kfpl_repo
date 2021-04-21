@@ -1,0 +1,23 @@
+{
+	"teamlist" : 
+	{
+		"COQ":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/coq-128x128.png",
+			"init_name" : "COQ",
+			"full_name" : "COQ Gaulois"
+		},
+		"DGS":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/dgs-128x128.png",
+			"init_name" : "DGS",
+			"full_name" : "Dokdo Gunners"
+		},
+		"BRO":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/bors-128x128.png",
+			"init_name" : "BRO",
+			"full_name" : "BROS"
+		}
+	}
+}
