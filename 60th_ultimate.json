@@ -1,0 +1,78 @@
+{
+	"cal_id" : "12897",
+	"teamlist" : 
+	{
+		"0":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/bors-128x128.png",
+			"init_name" : "BRO",
+			"full_name" : "BROS"
+		},
+		"1":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/coq-128x128.png",
+			"init_name" : "COQ",
+			"full_name" : "COQ Gaulois"
+		},
+		"2":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/KakaoTalk_20210521_150253293-128x128.png",
+			"init_name" : "UNL",
+			"full_name" : "Club Unlimited"
+		},
+		"3":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/kong-128x128.png",
+			"init_name" : "KFC",
+			"full_name" : "KONG FC"
+		},
+		"4":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210518_154354659-128x128.png",
+			"init_name" : "LEU",
+			"full_name" : "LE UNITED"
+		},
+		"5":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210517_220438534-128x128.png",
+			"init_name" : "LTE",
+			"full_name" : "Latte is horse"
+		},
+		"6":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/01/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-1-126x128.png",
+			"init_name" : "MUN",
+			"full_name" : "Manchester UTD"
+		},
+		"7":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210517_195611420-128x128.png",
+			"init_name" : "NFC",
+			"full_name" : "No Brand FC"
+		},
+		"8":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/KakaoTalk_20191009_135341821-128x128.png",
+			"init_name" : "PSG",
+			"full_name" : "PSG"
+		},
+		"9":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210517_215502241-128x128.png",
+			"init_name" : "ARS",
+			"full_name" : "Pre Arsenal"
+		},
+		"10":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/01/snp-128x128.png",
+			"init_name" : "SNP",
+			"full_name" : "SniperUTD"
+		},
+		"11":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210520_095114437-128x128.png",
+			"init_name" : "TDG",
+			"full_name" : "TEAM DOGE"
+		}
+	}
+}

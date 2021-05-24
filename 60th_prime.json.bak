@@ -1,0 +1,72 @@
+{
+	"cal_id" : "
+	"teamlist" : 
+	{
+,		"0":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/KakaoTalk_20210521_152656996-128x128.png",
+			"init_name" : "ARI",
+			"full_name" : "ARISU"
+		},
+		"1":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/KakaoTalk_20210521_152657080-128x128.png",
+			"init_name" : "ART",
+			"full_name" : "ART Soccer"
+		},
+		"2":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/dgs-128x128.png",
+			"init_name" : "DGS",
+			"full_name" : "Dokdo Gunners"
+		},
+		"3":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/KakaoTalk_20210521_152656820-128x128.png",
+			"init_name" : "ELE",
+			"full_name" : "ELEPHANT FC"
+		},
+		"4":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/01/final-fc-128x128.png",
+			"init_name" : "FNL",
+			"full_name" : "FINAL FC"
+		}
+		"5":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/gunnerz2-128x128.png",
+			"init_name" : "GUN",
+			"full_name" : "GUNNERZ"
+		},
+		"6":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/%EC%95%84%EC%9D%B4%EC%BD%98-128x128.png",
+			"init_name" : "ICO",
+			"full_name" : "ICONS"
+		},
+		"7":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210520_092648914-128x128.png",
+			"init_name" : "MOV",
+			"full_name" : "MOVEMENT"
+		},
+		"8":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210521_153314708-128x128.png",
+			"init_name" : "PCM",
+			"full_name" : "ProclubMaker FC"
+		},
+		"9":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/01/KakaoTalk_20210521_115749958-128x128.png",
+			"init_name" : "TD",
+			"full_name" : "TEAM DYNAMIC"
+		},	
+		"10":
+		{
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20210517_220438746-128x128.png",
+			"init_name" : "UTS",
+			"full_name" : "UPTENSION FC"
+		}		
+	}
+}
