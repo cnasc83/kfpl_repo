@@ -1,4 +1,6 @@
 {
+	"league_nm" : "KFPL 61th",
+	"cal_id" : "12896",
 	"teamlist" : 
 	{
 		"0":
@@ -145,5 +147,5 @@
 			"init_name" : "UTS",
 			"full_name" : "UPTENSION FC"
 		}
-	}
+	}	
 }
