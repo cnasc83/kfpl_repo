@@ -1,0 +1,342 @@
+
+/*위젯 크기 small, medium*/
+const widgetSize = config.widgetFamily || 'large'
+
+// 배경 화면 컬러
+const bgColor = "#000000"
+
+// 타이틀 배경 컬러
+const titleBgColor = "#0886ff"
+
+// 순위표 텍스트 컬러
+const tableTextColor = "#FFFFFF"
+
+
+// 응원 하는 팀 설정 (팀 이름 및 강조 컬러 설정)
+const myFavoriteTeamBgColor = "#EEE"
+
+
+// 리그 이름
+var league_nm = ''
+
+// 캘린더 ID
+
+const textSize = 9.5
+const logoSize = 38
+const logoSmallSize = 22
+const spacing = { normal: 8, smaller: 6, vs: 5, widget: 10 }
+
+var resetmode = 0
+
+const orgData = {
+  team_init_name : "",
+  team_full_name : "",
+  team_img_src : "",
+  cal_id : "",
+  dark_mode : true
+}
+
+var teamDataURL
+var teamAllData
+var teamList
+var usrData
+
+var myTeamInfo
+var data
+var car_url = 'http://kfpl.kr/wp-json/sportspress/v2/calendars/'
+
+
+/*파일 설정*/
+let tempFm = FileManager.local()
+let tempPath = tempFm.joinPath(tempFm.documentsDirectory(), "LeagueTableConfig.txt")
+
+if(!tempFm.fileExists(tempPath))
+{
+	if(config.runsInWidget)
+	{
+		let errorWidget = new ListWidget()
+		let title = errorWidget.addText("앱 내에서 위젯을 실행해 주세요.\nPlease run the widget in the app.")
+		title.font = Font.boldMonospacedSystemFont(16)
+		errorWidget.backgroundColor = new Color("#4661a3")
+		Script.setWidget(errorWidget)
+		return 0
+	}
+  
+	var dataPath = "local"
+	var language = "ko"
+  
+	tempFm.writeString(tempPath, language + "," + dataPath)
+}
+
+var configData = tempFm.readString(tempPath)
+var dataPath = configData.split(",")[1]
+var language = configData.split(",")[0]
+
+
+var fm
+fm = FileManager.local()
+
+const prefPath = fm.joinPath(fm.documentsDirectory(), "leagueTable.txt")
+
+if(!fm.fileExists(prefPath))
+{
+	let alert = new Alert()
+	alert.title = language == "ko" ? "환영합니다!" : "Welcome!"
+	alert.message = language == "ko" ? "KFPL 위젯을 사용해 주셔서 감사합니다. \nDeveloped by GXNZIO" : "welcome"
+	alert.addAction(language == "ko" ? "확인" : "OK")
+	await alert.present()
+	fm.writeString(prefPath, JSON.stringify(orgData))
+}
+
+
+
+if(config.runsInApp) 
+{
+
+	let menu = new UITable()
+	menu.showSeparators = true
+  
+	usrData = JSON.parse(fm.readString(prefPath))
+  
+	// Auto Update Preferences
+	var cnt = 0
+	for(i in orgData)
+	{
+		if(usrData[i] == undefined)
+		{
+			cnt = cnt + 1
+			usrData[i] = orgData[i]
+			console.log("[!] Updating Preferences... (" + cnt + ")")
+		}
+	}  
+
+	teamDataURL = "https://raw.githubusercontent.com/cnasc83/kfpl_repo/main/SINGLE.json"
+	teamAllData = await new Request(teamDataURL).loadJSON()
+	teamList = teamAllData.teamlist		
+	usrData.cal_id = teamAllData.cal_id
+	league_nm = teamAllData.league_nm
+	
+	const option1 = new UITableRow()
+	option1.dismissOnSelect = false
+	option1.addText("나의 팀 설정")
+	menu.addRow(option1)
+  
+  	option1.onSelect = async () => {
+  	
+		teamDataURL = "https://raw.githubusercontent.com/cnasc83/kfpl_repo/main/SINGLE.json"
+		teamAllData = await new Request(teamDataURL).loadJSON()
+		teamList = teamAllData.teamlist
+		usrData.cal_id = teamAllData.cal_id
+		
+		let teamSetMenu = new UITable()
+		teamSetMenu.showSeparators = true
+    
+		var FinalTeamArr = teamList
+    
+		for(reg in FinalTeamArr)
+		{
+			const regOption = new UITableRow()
+			regOption.dismissOnSelect = true
+			regOption.addText(FinalTeamArr[reg].full_name)
+			teamSetMenu.addRow(regOption)
+			
+			regOption.onSelect = async (reg) => {
+				
+				usrData["team_init_name"] = FinalTeamArr[reg].init_name
+				usrData["team_full_name"] = FinalTeamArr[reg].full_name
+				usrData["team_img_src"] = FinalTeamArr[reg].img_src
+
+				let teamSetAlert = new Alert()
+				teamSetAlert.title = "팀 선택"
+				teamSetAlert.message = "나의 팀이 " + FinalTeamArr[reg].full_name + "로 설정되었습니다."
+				teamSetAlert.addAction("확인")
+				await teamSetAlert.present()
+			}
+		}
+		await teamSetMenu.present()
+	}
+
+	
+	const option2 = new UITableRow()
+	option2.dismissOnSelect = false
+	option2.addText("다크모드 설정")
+	menu.addRow(option2)	
+	
+	option2.onSelect = async () => {
+
+		let darkYN = new Alert()
+		darkYN.title = "위젯 다크모드 사용 설정"
+		darkYN.message = "다크모드 기능입니다."
+		darkYN.addAction("사용")
+		darkYN.addCancelAction("미사용")
+
+		if(await darkYN.present() != -1)
+		{
+			usrData.dark_mode = true
+			
+		}else{
+			usrData.dark_mode = false
+		}
+
+	}
+  
+
+	const option3 = new UITableRow()
+	option3.dismissOnSelect = true
+	option3.addText("데이터 초기화")
+	menu.addRow(option3)
+  
+	option3.onSelect = async () => {
+		resetmode = 1
+		let resetAlert = new Alert()
+		resetAlert.title = "나의 팀 정보 삭제"
+		resetAlert.message = "초기화 하시겠습니까?" 
+		resetAlert.addDestructiveAction("초기화")
+		resetAlert.addCancelAction("취소")
+    
+		if(await resetAlert.present() != -1){
+			fm.remove(prefPath)
+			
+			tempFm.remove(tempPath)
+		}
+	}
+	
+	await menu.present(false)
+	fm.writeString(prefPath, JSON.stringify(usrData))
+  
+}
+
+
+if(resetmode){ return 0 }
+
+const fetchData = async (url, type = 'loadJSON') => {
+  const request = new Request(url)
+  const res = await request[type]()
+  return res
+}
+
+usrData = JSON.parse(fm.readString(prefPath))
+
+
+
+myFavoriteTeam = usrData.team_full_name
+
+
+// 리그 테이블 번호
+var leagueTableNumber
+var leagueTableDataURL
+var leagueTableData
+
+leagueTableDataURL = "https://raw.githubusercontent.com/cnasc83/kfpl_repo/main/League_A.json"
+leagueTableData = await new Request(teamDataURL).loadJSON()
+leagueTableNumber = leagueTableData.table_no		
+
+
+var url=`http://kfpl.kr/wp-json/sportspress/v2/tables/${leagueTableNumber}`
+
+const json = await get({ 'url': url })
+const w = new ListWidget()
+w.backgroundColor = new Color(bgColor)
+
+const titleStack = w.addStack()
+titleStack.layoutHorizontally()
+titleStack.backgroundColor = new Color(titleBgColor, 0.8)
+titleStack.cornerRadius = 3
+titleStack.setPadding(5, 0, 0, 0)
+
+createTextStack(titleStack, '순위', 30, 'title')
+createTextStack(titleStack, '팀', 120, 'title')
+createTextStack(titleStack, '경기', 25, 'title')
+createTextStack(titleStack, '승   무   패', 65, 'title')
+createTextStack(titleStack, '득실', 30, 'title')
+createTextStack(titleStack, '승점', 30, 'title')
+
+const dummyStack = w.addStack()
+dummyStack.setPadding(3, 0, 0, 0)
+dummyStack.addSpacer()
+
+var kfplList = new Array()
+
+for (var key in json.data) {
+  const team = json.data[key]
+  kfplList.push(team)
+}
+
+kfplList.sort(function(a,b) {
+  return a.pos > b.pos
+})
+
+const teamViewList = kfplList.slice(0,12)
+
+for (var team in teamViewList) {
+
+  const stack = w.addStack()
+  stack.layoutHorizontally()
+  stack.setPadding(5, 0, 0, 0)
+  
+  const stats = teamViewList[team]
+
+  var itemDivision = 'normal'
+  if(teamViewList[team].name == myFavoriteTeam) {  
+    itemDivision = 'favorite'
+    stack.backgroundColor = new Color(myFavoriteTeamBgColor, 0.2)
+    stack.cornerRadius = 3
+  }
+
+  // pos
+  createTextStack(stack, `${stats.pos}`, 30, itemDivision)
+  
+  // club
+  createTextStack(stack,`${stats.name}`, 120, itemDivision, 'club')
+  
+  // played
+  createTextStack(stack,`${stats.p}`,25, itemDivision)
+  
+  // won - drawn - lost
+  createTextStack(stack,`${stats.w}   ${stats.d}   ${stats.l}`, 65, itemDivision)
+  
+  // Goals Shot - Got
+  createTextStack(stack, `${stats.gd}`, 30, itemDivision)
+  
+  // Points
+  createTextStack(stack, `${stats.pts}`, 30, itemDivision)
+  
+  w.addSpacer(2)
+}
+
+w.presentLarge()
+
+if (config.runsInWidget) {
+  let widget = w
+  Script.setWidget(widget)
+  Script.complete()
+}
+
+function createTextStack(stack, text, w, itemDivision, club) {
+  const tmpStack = stack.addStack()
+  const widgetText = tmpStack.addText(text)
+  widgetText.font = Font.systemFont(13)
+  widgetText.textColor = new Color(tableTextColor, 1)
+
+  if(itemDivision == 'favorite'){
+    // favorite team stack
+    widgetText.textOpacity = 1
+  } else if(itemDivision == 'title'){
+    // title stack
+    widgetText.font = Font.systemFont(12)
+  } else {
+    widgetText.textOpacity = 0.6
+  }
+  
+  tmpStack.size = new Size(w, 18)
+  if(club == 'club'){
+    tmpStack.addSpacer()
+  }
+  return tmpStack
+}
+
+async function get(opts) {
+  const request = new Request(opts.url)
+  var result=await request.loadJSON()
+  return result
+}
