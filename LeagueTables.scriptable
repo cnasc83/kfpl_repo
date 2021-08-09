@@ -19,13 +19,6 @@ const myFavoriteTeamBgColor = "#EEE"
 // ¸®±× ÀÌ¸§
 var league_nm = ''
 
-// Ä¶¸°´õ ID
-
-const textSize = 9.5
-const logoSize = 38
-const logoSmallSize = 22
-const spacing = { normal: 8, smaller: 6, vs: 5, widget: 10 }
-
 var resetmode = 0
 
 const orgData = {
@@ -217,6 +210,9 @@ const fetchData = async (url, type = 'loadJSON') => {
 
 usrData = JSON.parse(fm.readString(prefPath))
 
+teamDataURL = "https://raw.githubusercontent.com/cnasc83/kfpl_repo/main/SINGLE.json"
+teamAllData = await new Request(teamDataURL).loadJSON()
+teamList = teamAllData.teamlist		
 
 
 myFavoriteTeam = usrData.team_full_name
@@ -228,7 +224,7 @@ var leagueTableDataURL
 var leagueTableData
 
 leagueTableDataURL = "https://raw.githubusercontent.com/cnasc83/kfpl_repo/main/League_A.json"
-leagueTableData = await new Request(teamDataURL).loadJSON()
+leagueTableData = await new Request(leagueTableDataURL).loadJSON()
 leagueTableNumber = leagueTableData.table_no		
 
 
@@ -238,22 +234,40 @@ const json = await get({ 'url': url })
 const w = new ListWidget()
 w.backgroundColor = new Color(bgColor)
 
-const titleStack = w.addStack()
-titleStack.layoutHorizontally()
-titleStack.backgroundColor = new Color(titleBgColor, 0.8)
-titleStack.cornerRadius = 3
-titleStack.setPadding(5, 0, 0, 0)
+const titleFrame = w.addStack()
+titleFrame.layoutVertically()
+titleFrame.cornerRadius = 2
+titleFrame.setPadding(2, 0, 0, 0)
+titleFrame.size = new Size(360, 20)
 
-createTextStack(titleStack, '¼øÀ§', 30, 'title')
-createTextStack(titleStack, 'ÆÀ', 120, 'title')
-createTextStack(titleStack, '°æ±â', 25, 'title')
-createTextStack(titleStack, '½Â   ¹«   ÆÐ', 65, 'title')
-createTextStack(titleStack, 'µæ½Ç', 30, 'title')
-createTextStack(titleStack, '½ÂÁ¡', 30, 'title')
+const titleStack1 = titleFrame.addStack()
+titleStack1.layoutHorizontally()
+titleStack1.cornerRadius = 2
+titleStack1.setPadding(2, 0, 0, 0)
+titleStack1.size = new Size(160, 20)
 
-const dummyStack = w.addStack()
-dummyStack.setPadding(3, 0, 0, 0)
+createTextStack(titleStack1, 'R', 30, 'title')
+createTextStack(titleStack1, 'Team', 40, 'title')
+createTextStack(titleStack1, 'W/D/L', 55, 'title')
+createTextStack(titleStack1, 'PTS', 30, 'title')
+
+
+const dummyStack = titleFrame.addStack()
+dummyStack.setPadding(2, 0, 0, 0)
 dummyStack.addSpacer()
+createTextStack(dummyStack, '|', 20, 'title')
+
+
+const titleStack2 = titleFrame.addStack()
+titleStack2.layoutHorizontally()
+titleStack2.cornerRadius = 2
+titleStack2.setPadding(2, 0, 0, 0)
+titleStack2.size = new Size(160, 20)
+
+createTextStack(titleStack2, 'R', 30, 'title')
+createTextStack(titleStack2, 'Team', 40, 'title')
+createTextStack(titleStack2, 'W/D/L', 55, 'title')
+createTextStack(titleStack2, 'PTS', 30, 'title')
 
 var kfplList = new Array()
 
@@ -266,13 +280,13 @@ kfplList.sort(function(a,b) {
   return a.pos > b.pos
 })
 
-const teamViewList = kfplList.slice(0,12)
+const teamViewList = kfplList.slice(0,13)
 
 for (var team in teamViewList) {
 
   const stack = w.addStack()
   stack.layoutHorizontally()
-  stack.setPadding(5, 0, 0, 0)
+  stack.setPadding(1, 0, 0, 0)
   
   const stats = teamViewList[team]
 
@@ -280,29 +294,36 @@ for (var team in teamViewList) {
   if(teamViewList[team].name == myFavoriteTeam) {  
     itemDivision = 'favorite'
     stack.backgroundColor = new Color(myFavoriteTeamBgColor, 0.2)
-    stack.cornerRadius = 3
+    stack.cornerRadius = 20
   }
+  
+  var teamArr = teamList
+
+  for(num in teamArr)
+  {
+	  if(teamArr[num].full_name == stats.name)
+	  {
+		stats.name = teamArr[num].init_name
+	  }
+  }	  
+  
 
   // pos
   createTextStack(stack, `${stats.pos}`, 30, itemDivision)
   
   // club
-  createTextStack(stack,`${stats.name}`, 120, itemDivision, 'club')
-  
-  // played
-  createTextStack(stack,`${stats.p}`,25, itemDivision)
+  createTextStack(stack,`${stats.name}`, 40, itemDivision, 'club')
   
   // won - drawn - lost
-  createTextStack(stack,`${stats.w}   ${stats.d}   ${stats.l}`, 65, itemDivision)
-  
-  // Goals Shot - Got
-  createTextStack(stack, `${stats.gd}`, 30, itemDivision)
+  createTextStack(stack,`${stats.w}/${stats.d}/${stats.l}`, 55, itemDivision)
   
   // Points
   createTextStack(stack, `${stats.pts}`, 30, itemDivision)
   
   w.addSpacer(2)
 }
+
+
 
 w.presentLarge()
 
@@ -317,13 +338,16 @@ function createTextStack(stack, text, w, itemDivision, club) {
   const widgetText = tmpStack.addText(text)
   widgetText.font = Font.systemFont(13)
   widgetText.textColor = new Color(tableTextColor, 1)
+  
 
   if(itemDivision == 'favorite'){
     // favorite team stack
     widgetText.textOpacity = 1
   } else if(itemDivision == 'title'){
     // title stack
-    widgetText.font = Font.systemFont(12)
+    widgetText.font = Font.boldSystemFont(12)
+    widgetText.textColor = new Color("#0886ff",1)
+//     widgetText.centerAlignText()
   } else {
     widgetText.textOpacity = 0.6
   }
