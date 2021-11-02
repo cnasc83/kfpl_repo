@@ -30,14 +30,14 @@
 		"4":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/07/Club_Playground-128x128.png",
-			"init_name" : "Club Playground",
-			"full_name" : "CP"
+			"init_name" : "CP",
+			"full_name" : "Club Playground"
 		},
 		"5":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/dgs-128x128.png",
-			"init_name" : "Dokdo FC",
-			"full_name" : "DGS"
+			"init_name" : "DGS",
+			"full_name" : "Dokdo FC"
 		},
 		"6":
 		{
@@ -54,8 +54,8 @@
 		"8":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/10/KakaoTalk_20211026_172853650-128x128.png",
-			"init_name" : "France",
-			"full_name" : "FRA"
+			"init_name" : "FRA",
+			"full_name" : "France"
 		},
 		"9":
 		{

@@ -30,14 +30,14 @@
 		"4":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/07/Club_Playground-128x128.png",
-			"init_name" : "Club Playground",
-			"full_name" : "CP"
+			"init_name" : "CP",
+			"full_name" : "Club Playground"
 		},
 		"5":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/dgs-128x128.png",
-			"init_name" : "Dokdo FC",
-			"full_name" : "DGS"
+			"init_name" : "DGS",
+			"full_name" : "Dokdo FC"
 		},
 		"6":
 		{
@@ -77,75 +77,71 @@
 		},
 		"12":
 		{
-
+			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/KakaoTalk_20211025_103259058-128x128.png",
+			"init_name" : "LEB",
+			"full_name" : "Les Bleus"	
 		},
 		"13":
 		{
-			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/KakaoTalk_20211025_103259058-128x128.png",
-			"init_name" : "LEB",
-			"full_name" : "Les Bleus"		
-		},
-		"14":
-		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/KakaoTalk_20211025_095510924_03-128x128.png",
 			"init_name" : "MFC",
-			"full_name" : "Morning FC"
+			"full_name" : "Morning FC"	
 		},
-		"15":
+		"14":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/CFC81519-8668-4AA4-AF7A-BBCE82DE699B-98x128.png",
 			"init_name" : "NFC",
 			"full_name" : "No Brand FC"
 		},
-		"16":
+		"15":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/10/KakaoTalk_20211025_095510924-107x128.png",
 			"init_name" : "OVD",
 			"full_name" : "Overdog"
 		},
-		"17":
+		"16":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/KakaoTalk_20191009_135341821-128x128.png",
 			"init_name" : "PSG",
 			"full_name" : "PSG"
 		},
-		"18":
+		"17":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2019/09/shiba-128x128.png",
 			"init_name" : "SBA",
 			"full_name" : "SHIBA FC"
 		},
-		"19":
+		"18":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/01/KakaoTalk_20210521_115749958-128x128.png",
 			"init_name" : "TD",
 			"full_name" : "TEAM DYNAMIC"
 		},
-		"20":
+		"19":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/10/KakaoTalk_20211025_095510924_02-92x128.png",
 			"init_name" : "TTM",
 			"full_name" : "The Tactical Movement FC"
 		},
-		"21":
+		"20":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/05/%EC%97%85%ED%85%90%EC%85%98FC_%EC%97%A0%EB%B8%94%EB%9F%BC_A_%ED%94%84%EB%A6%AC%EB%B7%B0%EC%A0%9C%EA%B1%B0-128x128.png",
 			"init_name" : "UTS",
 			"full_name" : "UPTENSION FC"
 		},
-		"22":
+		"21":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2020/10/KakaoTalk_20210719_171256655-128x128.png",
 			"init_name" : "VTR",
 			"full_name" : "VETERAN CF"
-		},	
-		"23":
+		},
+		"22":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/10/KakaoTalk_20211025_095510924_01-128x128.png",
 			"init_name" : "WWW",
 			"full_name" : "Wide Wise Wild"
 		},	
-		"24":
+		"23":
 		{
 			"img_src" : "http://kfpl.kr/wp-content/uploads/2021/10/%EC%A3%BC%EC%82%AC%EC%9C%84_%EB%A1%9C%EA%B3%A0-128x128.png",
 			"init_name" : "Z4W",
